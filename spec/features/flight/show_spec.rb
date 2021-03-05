@@ -53,6 +53,8 @@ RSpec.describe "As a visitor" do
       expect(page).to have_button 'remove Jeff'
       click_button 'remove Jeff'
       expect(page).to have_no_content(@jeff.name)
+
+      expect(current_path).to eq("/flights/#{@flight_1.id}")
     end
   end
 end
