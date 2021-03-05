@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.describe "As a visitor" do
   before(:each) do
-    @flight_1 = Flight.create!(number: 123, time: 0700, departure_city:"Denver", arrival_city: "Las Vegas", date: '2000-01-01 00:00:00 -0500')
-    @flight_2 = Flight.create!(number: 124, time: 0700, departure_city:"Albany", arrival_city: "Las Vegas", date: '2000-01-01 00:00:00 -0500')
-    @flight_3 = Flight.create!(number: 125, time: 0700, departure_city:"Zurich", arrival_city: "Las Vegas", date: '2000-01-01 00:00:00 -0500')
+    @flight_1 = Flight.create!(number: 123, time: 0700, departure_city:"Las Vegas", arrival_city: "Denver", date: '2000-01-01 00:00:00 -0500')
+    @flight_2 = Flight.create!(number: 124, time: 0700, departure_city:"Las Vegas", arrival_city: "Albany", date: '2000-01-01 00:00:00 -0500')
+    @flight_3 = Flight.create!(number: 125, time: 0700, departure_city:"Las Vegas", arrival_city: "Zurich", date: '2000-01-01 00:00:00 -0500')
   end
 
   describe "when I visit the flights index page" do
@@ -26,13 +26,13 @@ RSpec.describe "As a visitor" do
 
     end
 
-    xit 'all flights are listed in alphabetical order by departure city (A - Z)' do
-      within "#items-ready-to-ship" do
-        expect(page.all('.items')[0]).to have_content("Saturday, March 23, 1991")
-        expect(page.all('.items')[1]).to have_content("Thursday, January 28, 1993")
-        expect(page.all('.items')[2]).to have_content("Friday, January 28, 1994")
-        expect(page.all('.items')[3]).to have_content("Thursday, January 28, 2021")
-        expect(page.all('.items')[4]).to have_content("")
+    it 'all flights are listed in alphabetical order by departure city (A - Z)' do
+      visit "/flights/"
+
+      within "#flights-arrival_city" do
+        expect(page.all('.flights')[0]).to have_content("Albany")
+        expect(page.all('.flights')[1]).to have_content("Denver")
+        expect(page.all('.flights')[2]).to have_content("Zurich")
       end
     end
   end
