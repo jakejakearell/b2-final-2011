@@ -5,7 +5,7 @@ RSpec.describe Flight, type: :model do
     @flight_2 = Flight.create!(number: 124, time: 0700, departure_city:"Las Vegas", arrival_city: "Albany", date: '2000-01-01 00:00:00 -0500')
     @flight_3 = Flight.create!(number: 125, time: 0700, departure_city:"Las Vegas", arrival_city: "Zurich", date: '2000-01-01 00:00:00 -0500')
 
-    @seth = Passenger.create!(name: "Seth", age: 20)
+    @seth = Passenger.create!(name: "Seth", age: 18)
     @jeff = Passenger.create!(name: "Jeff", age: 30)
     @jake = Passenger.create!(name: "Jake", age: 1)
 
@@ -20,12 +20,17 @@ RSpec.describe Flight, type: :model do
   end
 
   describe 'instance methods' do
-    it '#adult_passengers' do
-      expect(@flight_1.adult_passengers.count).to eq(2)
+    
+    describe '#adult_passengers' do
+      it 'it returns passengers over 18' do
+        expect(@flight_1.adult_passengers.count).to eq(2)
+      end
     end
 
-    it '#average_age' do
-      expect(@flight_1.average_age).to eq(25)
+    describe '#average_age' do
+      it 'returns the average age of adults' do
+        expect(@flight_1.average_age).to eq(24)
+      end
     end
   end
 

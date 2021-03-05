@@ -21,8 +21,10 @@ RSpec.describe FlightPassenger, type: :model do
   end
 
   describe 'class methods' do
-    it '::find_id' do
-      expect(FlightPassenger.find_id(@seth.id, @flight_1.id)[0].class).to eq(Integer)
+    describe '::find_id' do
+      it 'finds the id of the flight passenger colums' do
+        expect(FlightPassenger.find_id(@seth.id, @flight_1.id)[0].class).to eq(Integer)
+      end
     end
   end
 end
