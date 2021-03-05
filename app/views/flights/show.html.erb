@@ -3,3 +3,7 @@
 <%= @flight.date%>
 <%= @flight.departure_city%>
 <%= @flight.arrival_city%>
+
+<% @flight.adult_passengers.each do |passenger| %>
+  <%= passenger.name %>
+<% end %>

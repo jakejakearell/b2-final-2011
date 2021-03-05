@@ -4,7 +4,7 @@ RSpec.describe "As a visitor" do
   before(:each) do
     @flight_1 = Flight.create!(number: 123, time: 0700, departure_city:"Las Vegas", arrival_city: "Denver", date: '2000-01-01 00:00:00 -0500')
 
-    @seth = Passenger.create!(name: "Seth", age: 20)
+    @seth = Passenger.create!(name: "Seth", age: 18)
     @jeff = Passenger.create!(name: "Jeff", age: 30)
     @jake = Passenger.create!(name: "Jake", age: 1)
 
@@ -26,12 +26,18 @@ RSpec.describe "As a visitor" do
     end
 
     it "I see the names of the passengers older than 18" do
-
       visit "/flights/#{@flight_1.id}"
 
       expect(page).to have_content(@seth.name)
       expect(page).to have_content(@jeff.name)
       expect(page).to have_no_content(@jake.name)
+
+    end
+
+    it "I see the average age of adults" do
+      visit "/flights/#{@flight_1.id}"
+
+      expect(page).to have_content("24")
 
     end
   end
