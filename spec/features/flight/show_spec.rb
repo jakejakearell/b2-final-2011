@@ -34,11 +34,25 @@ RSpec.describe "As a visitor" do
 
     end
 
-    it "I see the average age of adults" do
+    it "I see the average age of adults on the plane" do
       visit "/flights/#{@flight_1.id}"
 
       expect(page).to have_content("24")
+    end
 
+    it "I see a button to remove the passenger from the flight" do
+      visit "/flights/#{@flight_1.id}"
+
+      expect(page).to have_content(@seth.name)
+      expect(page).to have_content(@jeff.name)
+
+      expect(page).to have_button 'remove Seth'
+      click_button 'remove Seth'
+      expect(page).to have_no_content(@seth.name)
+
+      expect(page).to have_button 'remove Jeff'
+      click_button 'remove Jeff'
+      expect(page).to have_no_content(@jeff.name)
     end
   end
 end
