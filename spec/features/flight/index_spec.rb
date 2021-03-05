@@ -10,7 +10,7 @@ RSpec.describe "As a visitor" do
   describe "when I visit the flights index page" do
     it "I see each flight in the system including its number, departure city, and arrival city" do
 
-      visit "/flights/"
+      visit flights_path
 
       expect(page).to have_content(@flight_1.number)
       expect(page).to have_content(@flight_1.departure_city)
@@ -27,7 +27,7 @@ RSpec.describe "As a visitor" do
     end
 
     it 'all flights are listed in alphabetical order by departure city (A - Z)' do
-      visit "/flights/"
+      visit flights_path
 
       within "#flights-arrival_city" do
         expect(page.all('.flights')[0]).to have_content("Albany")
