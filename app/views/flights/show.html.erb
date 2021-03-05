@@ -1,11 +1,16 @@
+<h3> Flight Info</h3>
+
 <%= @flight.number%>
 <%= @flight.time%>
 <%= @flight.date%>
 <%= @flight.departure_city%>
 <%= @flight.arrival_city%>
 
+<h3> Adult Passengers</h3>
 <% @flight.adult_passengers.each do |passenger| %>
-  <%= passenger.name %>
+  <%= passenger.name %><br>
+  <%= button_to "remove #{passenger.name}", {:controller => "flight_passengers", :action => "destroy", :passenger_id => "#{passenger.id}" }, :method=>:delete  %>
 <% end %>
 
+<h3>Average age of passengers</h3>
 <%= @flight.average_age %>
